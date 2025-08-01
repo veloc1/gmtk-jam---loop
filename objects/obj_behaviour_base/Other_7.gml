@@ -1,0 +1,1 @@
+bo.on_animation_end()
