@@ -3,6 +3,7 @@ start_y = 10
 
 incremented_resources = []
 insufficient_resources = []
+action_buttons = []
 
 ui_draw_action_button = function(_x, _y, text) {
     var width = 172
@@ -66,4 +67,21 @@ decrement_resource = function(resource) {
 }
 insufficient_resource = function(resource) {
     array_push(insufficient_resources, new UIInsufficientResource(resource))
+}
+
+refresh_actions_buttons = function() {
+    action_buttons = []
+    
+    for (var i = 0; i < array_length(obj_actions_controller.actions); i++) {
+        var action = obj_actions_controller.actions[i]
+        
+        var button = new UIActionButton(start_x, start_y + 36 + i * 38, action.title)
+        button.width = 172
+        
+        button.shortcut = INPUT_VERB.ACTION1 + i
+        
+        button.action = action
+        
+        array_push(action_buttons, button)
+    }
 }

@@ -23,11 +23,14 @@ draw_sprite_stretched(spr_turn_rect_outline, 0, start_x, _y, width, 8)
 
 
 #region buttons
-for (var i = 0; i < array_length(obj_actions_controller.actions); i++) {
+for (var i = 0; i < array_length(action_buttons);i++) {
+    action_buttons[i].draw()
+}
+/*for (var i = 0; i < array_length(obj_actions_controller.actions); i++) {
     var action = obj_actions_controller.actions[i]
     _y += 18
     ui_draw_action_button(start_x, _y, action.title)
-}
+}*/
 #endregion
 
 

@@ -12,3 +12,7 @@ for (var i = 0; i < array_length(insufficient_resources);i++) {
         i -= 1
     }
 }
+
+for (var i = 0; i < array_length(action_buttons);i++) {
+    action_buttons[i].step()
+}
