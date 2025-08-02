@@ -1,3 +1,4 @@
+/*
 if (InputPressed(INPUT_VERB.ACTION1)) {
     if (array_length(obj_actions_controller.actions) >= 1) {
         obj_actions_controller.actions[0].func()
@@ -14,4 +15,4 @@ if (InputPressed(INPUT_VERB.ACTION1)) {
     if (array_length(obj_actions_controller.actions) >= 4) {
         obj_actions_controller.actions[3].func()
     }
-}
+}*/

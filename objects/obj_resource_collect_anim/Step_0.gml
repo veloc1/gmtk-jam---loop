@@ -20,9 +20,16 @@ if (t > scale_after) {
 
 if (t >= 1) {
     instance_destroy(self)
-    obj_run_state.resources[resource] += 1
-    
-    increment_resource_in_ui(resource)
+    if (resource == RESOURCE.HP) {
+        obj_player.hp += 1
+        if (obj_player.hp > obj_player.max_hp) {
+            obj_player.hp = obj_player.max_hp
+        }
+    } else {
+        obj_run_state.resources[resource] += 1
+        
+        increment_resource_in_ui(resource)
+    }
 }
 
 var p = get_bezier_point(x1, y1, x2, y2, x3, y3, obj_player.x + obj_player.sprite_width / 2 + sprite_width, obj_player.y + 8, t)

@@ -5,6 +5,20 @@ incremented_resources = []
 insufficient_resources = []
 action_buttons = []
 
+
+skip_button = new UIButton(start_x, 0, "Skip")
+skip_button.width = 172
+
+skip_button.shortcut = INPUT_VERB.SKIP
+
+skip_button.callback = function() {
+    if (obj_actions_controller.can_skip) {
+        obj_move_controller.skip_idle()
+    } else {
+        
+    }
+}
+
 ui_draw_action_button = function(_x, _y, text) {
     var width = 172
     draw_sprite_stretched(spr_button_outline, 0, _x, _y, width, 16)
@@ -75,7 +89,7 @@ refresh_actions_buttons = function() {
     for (var i = 0; i < array_length(obj_actions_controller.actions); i++) {
         var action = obj_actions_controller.actions[i]
         
-        var button = new UIActionButton(start_x, start_y + 36 + i * 38, action.title)
+        var button = new UIActionButton(start_x, start_y + 48 + i * 38, action.title)
         button.width = 172
         
         button.shortcut = INPUT_VERB.ACTION1 + i
@@ -84,4 +98,5 @@ refresh_actions_buttons = function() {
         
         array_push(action_buttons, button)
     }
+    
 }

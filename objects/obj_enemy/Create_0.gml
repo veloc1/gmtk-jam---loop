@@ -28,9 +28,7 @@ add_behaviour(new Behaviour("prepare_attack", {
 }))
 add_behaviour(new Behaviour("lunge", {
     on_start: function() {
-        instance_create_layer(obj_player.x, obj_player.y, "Effects", obj_slash_fx)
-        obj_screen_shaker.small_shake(0)
-        obj_player.damage()
+        
     },
     on_step: function() {
         x_offset -= 0.5
@@ -38,6 +36,11 @@ add_behaviour(new Behaviour("lunge", {
             change_behaviour("back-to-idle")
         }
         x = start_x + x_offset
+    },
+    on_end: function() {
+        instance_create_layer(obj_player.x, obj_player.y, "Effects", obj_slash_fx)
+        obj_screen_shaker.small_shake(0)
+        obj_player.damage()
     }
 }))
 add_behaviour(new Behaviour("back-to-idle", {

@@ -6,6 +6,8 @@
 //                 //
 /////////////////////
 
+InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_shoulderrb, spr_gp_ps_rb); //R2
+
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_face1, spr_gp_ps_x   ); //Cross
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_face2, spr_gp_ps_o  ); //Circle
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_face3, spr_gp_ps_s  ); //Square
@@ -14,7 +16,7 @@ InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_face4, spr_gp_ps_t ); //Triang
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_shoulderl,  "L1"); //L1
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_shoulderr,  "R1"); //R1
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_shoulderlb, "L2"); //L2
-InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_shoulderrb, "R2"); //R2
+// InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_shoulderrb, "R2"); //R2
 
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_select, "create" ); //Select
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_start,  "options"); //Start
@@ -52,6 +54,7 @@ InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_paddlel, "LB");
 //  PlayStation 4  //
 //                 //
 /////////////////////
+InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_shoulderrb, spr_gp_ps_rb); //R2
 
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_face1, spr_gp_ps_x   ); //Cross
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_face2, spr_gp_ps_o ); //Circle
@@ -61,7 +64,7 @@ InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_face4, spr_gp_ps_t ); //Triang
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_shoulderl,  "L1"); //L1
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_shoulderr,  "R1"); //R1
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_shoulderlb, "L2"); //L2
-InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_shoulderrb, "R2"); //R2
+// InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_shoulderrb, "R2"); //R2
 
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_select, "share"  ); //Select
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_start,  "options"); //Start

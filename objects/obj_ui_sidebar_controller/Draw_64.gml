@@ -21,6 +21,12 @@ if (next_move_timer != undefined) {
 draw_sprite_stretched(spr_turn_rect_fill, 0, start_x, _y, width * p, 8)
 draw_sprite_stretched(spr_turn_rect_outline, 0, start_x, _y, width, 8)
 
+_y += 9
+skip_button.y = _y
+if (obj_actions_controller.can_skip) {
+    skip_button.draw()
+}
+
 
 #region buttons
 for (var i = 0; i < array_length(action_buttons);i++) {

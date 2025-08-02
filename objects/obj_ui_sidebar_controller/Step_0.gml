@@ -16,3 +16,5 @@ for (var i = 0; i < array_length(insufficient_resources);i++) {
 for (var i = 0; i < array_length(action_buttons);i++) {
     action_buttons[i].step()
 }
+
+skip_button.step()

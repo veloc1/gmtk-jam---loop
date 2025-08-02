@@ -9,6 +9,14 @@ create_segment_objects = function(display_x) {
     }
     var next_segment = segments[ind]
     
+    _create_ground(next_segment, display_x)
+    _create_building(next_segment, display_x)
+    _create_enemies(next_segment, display_x)
+}
+
+#region instances
+
+_create_ground = function(next_segment, display_x) {
     if (next_segment.ground == GROUND.NORMAL) {
         var ground_inst = instance_create_layer(display_x, 128 + 5, "Ground", obj_ground)
         var _x = display_x + 16
@@ -21,21 +29,31 @@ create_segment_objects = function(display_x) {
     } else if (next_segment.ground == GROUND.CORRUPTED) {
         instance_create_layer(display_x, 128 + 5, "Ground", obj_ground_corrupted)
     }
-    
-    if (next_segment.building == BUILDING.MILL) {
-        instance_create_layer(display_x + 90, 128 + 5, "Instances0", obj_building_mill)
+}
+_create_building = function(next_segment, display_x) {
+    if (next_segment.building != undefined) {
+        instance_create_layer(display_x + 90, 128 + 5, "Groundm1", get_building_description(next_segment.building).object)
     }
-    
-    
+    /*if (next_segment.building == BUILDING.MILL) {
+        instance_create_layer(display_x + 90, 128 + 5, "Groundm1", obj_building_mill)
+    } else if (next_segment.building == BUILDING.PORTAL) {
+        instance_create_layer(display_x + 90, 128 + 5, "Groundm1", obj_building_portal)
+    } else if (next_segment.building == BUILDING.CHURCH) {
+        instance_create_layer(display_x + 90, 128 + 5, "Groundm1", obj_building_church)
+    }*/
+}
+_create_enemies = function(next_segment, display_x) {
     if (next_segment.enemy == ENEMY.SCARECROW) {
-        instance_create_layer(display_x + 160, 128 + 5, "Instances0", obj_scarecrow)
+        instance_create_layer(display_x + 160, 128 + 5, "Groundm1", obj_scarecrow)
     }
 }
+#endregion
+
 started_moving_to_next_segment = function() {
     obj_actions_controller.clear_actions()
 }
 
-moved_to_next_segment = function() {
+moved_to_next_segment = function(skip_resource_gathering = false) {
     current_segment += 1
     if (current_segment >= array_length(segments)) {
         current_segment = 0
@@ -44,16 +62,29 @@ moved_to_next_segment = function() {
     
     var segment = segments[current_segment]
     
-    if (segment.building == BUILDING.MILL) {
+    if (segment.building != undefined) {
         var desc = get_building_description(segment.building)
-        var _x = 90
-        for (var i = 0; i < array_length(desc.resources); i++) {
-            add_resource_to_player(_x, 90, desc.resources[i])
-            _x += 16
+        if (!skip_resource_gathering) {
+            var _x = 90
+            for (var i = 0; i < array_length(desc.resources); i++) {
+                add_resource_to_player(_x, 90, desc.resources[i])
+                _x += 16
+            }
         }
     }
     
     obj_actions_controller.populate_actions(segments[current_segment])
+    
+    if (segment.enemy != undefined) {
+        obj_move_controller.disable_idle_timer()
+    }
+    
+    if (segment.building == BUILDING.PORTAL and obj_run_state.portal_status == "complete") {
+        obj_actions_controller.clear_actions()
+        obj_move_controller.disable_idle_timer()
+        
+        instance_create_layer(0, 0, "UI", obj_ui_win_popup)
+    }
 }
 
 generate_segments = function() {
@@ -61,8 +92,14 @@ generate_segments = function() {
         var segment = new Segment()
         segment.ground = GROUND.NORMAL
         segment.ground_resources = [RESOURCE.EARTH, RESOURCE.WIND]
+        segment.building = BUILDING.CHURCH
         array_push(segments, segment)
     // }
+    
+    segment = new Segment()
+    segment.ground = GROUND.NORMAL
+    segment.ground_resources = [RESOURCE.EARTH, RESOURCE.WATER]
+    array_push(segments, segment)
     
     segment = new Segment()
     segment.ground = GROUND.CORRUPTED
@@ -75,15 +112,23 @@ generate_segments = function() {
     segment.enemy = ENEMY.SCARECROW
     array_push(segments, segment)
     
-    segments_count = 3
+    segment = new Segment()
+    segment.ground = GROUND.NORMAL
+    segment.ground_resources = [RESOURCE.EARTH, RESOURCE.WATER]
+    segment.building = BUILDING.PORTAL
+    array_push(segments, segment)
+    
+    segments_count = 5
 }
 
 generate_segments()
 
 current_segment = segments_count - 1
 create_segment_objects(0)
+
 // current_segment = segments_count - 1
 obj_time_manager.schedule_alarm(0.1, function() {
-    obj_actions_controller.populate_actions(segments[0])
+//    obj_actions_controller.populate_actions(segments[0])
+    moved_to_next_segment(true)
 })
 

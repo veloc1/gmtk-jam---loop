@@ -44,9 +44,10 @@ function add_resource_to_player(from_x, from_y, resource, delay = 0) {
     a.resource = resource    
     a.delay = delay
 }
-function take_resource_from_player(from_x, from_y, resource) {
+function take_resource_from_player(from_x, from_y, resource, delay = 0) {
     var a = instance_create_layer(from_x, from_y, "Instances1", obj_resource_take_anim)
     a.resource = resource
+    a.delay = delay
 }
 
 function increment_resource_in_ui(resource) {

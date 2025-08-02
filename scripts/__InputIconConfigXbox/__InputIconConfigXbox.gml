@@ -6,6 +6,8 @@
 //        //
 ////////////
 
+InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_XBOX, gp_shoulderrb, spr_gp_xb_rb); //RT
+
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_XBOX, gp_face1, spr_gp_xb_a); //A
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_XBOX, gp_face2, spr_gp_xb_b); //B
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_XBOX, gp_face3, spr_gp_xb_x); //X
@@ -14,7 +16,7 @@ InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_XBOX, gp_face4, spr_gp_xb_y); //Y
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_XBOX, gp_shoulderl,  "LB"); //LB
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_XBOX, gp_shoulderr,  "RB"); //RB
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_XBOX, gp_shoulderlb, "LT"); //LT
-InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_XBOX, gp_shoulderrb, "RT"); //RT
+// InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_XBOX, gp_shoulderrb, "RT"); //RT
 
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_XBOX, gp_select, "view"); //View
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_XBOX, gp_start,  "menu"); //Menu

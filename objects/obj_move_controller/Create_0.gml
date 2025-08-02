@@ -7,7 +7,9 @@ segment_size = 64 * 3
 distance_moved = 0
 t_start = 0
 t_end = 0
-idle_wait_time = 3
+idle_wait_time = 10
+
+is_timer_disabled = false
 
 timer_next_move = undefined
 
@@ -31,10 +33,12 @@ move_instance_layer = function(layer_name, delta) {
 }
 
 move_layers = function(delta) {
+    move_instance_layer("Groundm1", delta)
     move_instance_layer("Ground0", delta)
     move_instance_layer("Ground", delta)
     move_instance_layer("Ground1", delta)
     move_instance_layer("Instances0", delta)
+    move_instance_layer("Instances1", delta)
     
     layer_x("Background", layer_get_x("Background") - delta * 0.02)
     layer_x("Backgrounds_1", layer_get_x("Backgrounds_1") - delta * 0.22)
@@ -52,11 +56,28 @@ resume_move_timer = function() {
     }
 }
 
+enable_idle_timer = function() {
+    is_timer_disabled = false
+}
+disable_idle_timer = function() {
+    is_timer_disabled = true
+}
+skip_idle = function() {
+    obj_time_manager.discard_alarm(timer_next_move)
+    timer_next_move = undefined
+    change_behaviour("move-to-next")
+}
+
 add_behaviour(new Behaviour("idle", {
     on_start: function() { 
-        timer_next_move = obj_time_manager.schedule_alarm(idle_wait_time, function() {
-            change_behaviour("move-to-next")
-        })
+        obj_time_manager.discard_alarm(timer_next_move)
+        timer_next_move = undefined
+        
+        if (!is_timer_disabled) {
+            timer_next_move = obj_time_manager.schedule_alarm(idle_wait_time, function() {
+                change_behaviour("move-to-next")
+            })
+        }
     },
     on_step: function() {
     },

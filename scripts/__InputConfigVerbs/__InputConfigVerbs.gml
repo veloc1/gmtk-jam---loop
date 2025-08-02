@@ -13,6 +13,7 @@ function __InputConfigVerbs()
         ACTION2,
         ACTION3,
         ACTION4,
+        SKIP,
         SPECIAL,
         PAUSE,
     }
@@ -36,6 +37,7 @@ function __InputConfigVerbs()
         InputDefineVerb(INPUT_VERB.ACTION2,  "action2",     "X",            gp_face3);
         InputDefineVerb(INPUT_VERB.ACTION3,  "action3",     "C",            gp_face3);
         InputDefineVerb(INPUT_VERB.ACTION4,  "action4",     "V",            gp_face3);
+        InputDefineVerb(INPUT_VERB.SKIP,     "skip",        vk_space,            gp_shoulderrb);
         InputDefineVerb(INPUT_VERB.SPECIAL,  "special",     vk_shift,            gp_face4);
         InputDefineVerb(INPUT_VERB.PAUSE,    "pause",       vk_escape,           gp_start);
     }
@@ -51,6 +53,7 @@ function __InputConfigVerbs()
         InputDefineVerb(INPUT_VERB.ACTION2,  "action2",  undefined,   gp_face3);
         InputDefineVerb(INPUT_VERB.ACTION3,  "action3",  undefined,   gp_face3);
         InputDefineVerb(INPUT_VERB.ACTION4,  "action4",  undefined,   gp_face3);
+        InputDefineVerb(INPUT_VERB.SKIP,     "skip",     undefined,   gp_shoulderrb);
         InputDefineVerb(INPUT_VERB.SPECIAL, "special", undefined,   gp_face4);
         InputDefineVerb(INPUT_VERB.PAUSE,   "pause",   undefined,   gp_start);
     }
