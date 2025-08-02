@@ -9,4 +9,5 @@ function Segment() constructor {
     ground_resources = []
     building = undefined
     enemy = undefined
+    event = undefined
 }

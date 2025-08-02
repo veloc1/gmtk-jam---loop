@@ -1,11 +1,7 @@
 {
   "$GMObject":"",
   "%Name":"obj_fight_fx_1",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":7,"eventType":7,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":76,"eventType":7,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "eventList":[],
   "managed":true,
   "name":"obj_fight_fx_1",
   "overriddenProperties":[],
@@ -13,7 +9,10 @@
     "name":"Effects",
     "path":"folders/Objects/Effects.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_fight_fx",
+    "path":"objects/obj_fight_fx/obj_fight_fx.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -32,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_fight_effect1",
-    "path":"sprites/spr_fight_effect1/spr_fight_effect1.yy",
+    "name":"spr_fight_fx1",
+    "path":"sprites/spr_fight_fx1/spr_fight_fx1.yy",
   },
   "spriteMaskId":null,
   "visible":true,

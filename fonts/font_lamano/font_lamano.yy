@@ -118,7 +118,10 @@
   "sdfSpread":8,
   "size":6.0,
   "styleName":"Regular",
-  "textureGroupId":null,
+  "textureGroupId":{
+    "name":"Default",
+    "path":"texturegroups/Default",
+  },
   "TTFName":"C:\\Users\\Pavel\\Documents\\GameMakerStudio2\\gmtk jam - loop\\fonts\\lamano\\Lamano.ttf",
   "usesSDF":true,
 }

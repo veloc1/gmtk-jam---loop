@@ -11,6 +11,11 @@ hp_display = undefined
 start_x = x
 x_offset = 0
 
+blend_white = false
+repel_coords = []
+repel_start_time = 0
+repel_time = 0
+
 add_behaviour(new Behaviour("idle", {
     
 }))
@@ -60,6 +65,32 @@ add_behaviour(new Behaviour("destroy", {
         instance_destroy(self)
     }
 }))
+add_behaviour(new Behaviour("repel", {
+    on_start: function() {
+        array_push(repel_coords, x)
+        array_push(repel_coords, y)
+        array_push(repel_coords, x + 30)
+        array_push(repel_coords, y)
+        array_push(repel_coords, x + 70)
+        array_push(repel_coords, y - 60)
+        array_push(repel_coords, x - 320)
+        array_push(repel_coords, y - 80)
+        repel_start_time = obj_time_manager.game_time
+        
+        instance_destroy(hp_display)
+    },
+    on_step: function() {
+        var t = (obj_time_manager.game_time - repel_start_time) / 0.9
+        if (t >= 1) {
+            instance_destroy(self)
+            return
+        }
+        var c = get_bezier_point(repel_coords[0], repel_coords[1],repel_coords[2], repel_coords[3],repel_coords[4], repel_coords[5],repel_coords[6], repel_coords[7], t)
+        x = c.x
+        y = c.y
+        image_angle += 1.4
+    }
+}))
 
 
 init = function(_type) {
@@ -84,10 +115,25 @@ damage = function(dmg) {
         destroy()
         return true
     }
+    blink()
     return false
 }
+
+blink = function() {
+    blend_white = true
+    obj_time_manager.schedule_alarm(0.1, function() {
+        blend_white = false
+    })
+}
+
 
 destroy = function() {
     change_behaviour("destroy")
 }
 
+repel = function() {
+    if (bo.current_behaviour.name == "repel") {
+        return
+    }
+    change_behaviour("repel")
+}

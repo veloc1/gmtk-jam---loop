@@ -74,10 +74,13 @@ moved_to_next_segment = function(skip_resource_gathering = false) {
     }
     
     obj_actions_controller.populate_actions(segments[current_segment])
-    
-    if (segment.enemy != undefined) {
+    show_debug_message(obj_actions_controller.can_skip)
+    if (!obj_actions_controller.can_skip) {
         obj_move_controller.disable_idle_timer()
     }
+    /*if (segment.enemy != undefined) {
+        obj_move_controller.disable_idle_timer()
+    }*/
     
     if (segment.building == BUILDING.PORTAL and obj_run_state.portal_status == "complete") {
         obj_actions_controller.clear_actions()
@@ -93,6 +96,7 @@ generate_segments = function() {
         segment.ground = GROUND.NORMAL
         segment.ground_resources = [RESOURCE.EARTH, RESOURCE.WIND]
         segment.building = BUILDING.CHURCH
+        segment.event = EVENT.TUTORIAL_CHURCH
         array_push(segments, segment)
     // }
     
@@ -102,7 +106,7 @@ generate_segments = function() {
     array_push(segments, segment)
     
     segment = new Segment()
-    segment.ground = GROUND.CORRUPTED
+    segment.ground = GROUND.NORMAL
     segment.ground_resources = [RESOURCE.EARTH, RESOURCE.FIRE]
     array_push(segments, segment)
     

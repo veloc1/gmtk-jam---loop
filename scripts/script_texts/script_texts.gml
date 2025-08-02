@@ -43,3 +43,7 @@ function text_in_fight() {
         "You are in the middle of the fight",
     ])
 }
+
+function text_event_tutorial_church() {
+    return "Welcome, mage. Ancient whispers have \ndrawn you to this forgotten church. \nRebuild the portal within—it is your \nonly path home"
+}

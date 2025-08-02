@@ -133,7 +133,10 @@
   "sdfSpread":8,
   "size":6.0,
   "styleName":"Regular",
-  "textureGroupId":null,
+  "textureGroupId":{
+    "name":"Default",
+    "path":"texturegroups/Default",
+  },
   "TTFName":"C:\\Users\\Pavel\\Documents\\GameMakerStudio2\\gmtk jam - loop\\fonts\\font_slime\\Corvid Conspirator v1.1.ttf",
   "usesSDF":false,
 }

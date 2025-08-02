@@ -30,8 +30,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_slash_fx",
-    "path":"sprites/spr_slash_fx/spr_slash_fx.yy",
+    "name":"spr_splash2_fx",
+    "path":"sprites/spr_splash2_fx/spr_splash2_fx.yy",
   },
   "spriteMaskId":null,
   "visible":true,

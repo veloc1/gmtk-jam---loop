@@ -9,6 +9,7 @@ enum ACTION {
     ENDURE,
     HEAL,
     SKIP,
+    OK,
 }
 
 function Action(title, func, requirements, outcome) constructor {
@@ -35,6 +36,7 @@ function get_action_description(action) {
     actions[ACTION.ENDURE] = new Action("Endure", action_take_hit, [new Req(RESOURCE.HP, 1)], [])
     actions[ACTION.HEAL] = new Action("Heal", action_heal, [new Req(RESOURCE.SOUL, 1)], [new Req(RESOURCE.HP, 1)])
     actions[ACTION.SKIP] = new Action("Skip", action_skip, [], [])
+    actions[ACTION.OK] = new Action("OK?", action_ok, [], [])
     
     return actions[action]
 }
@@ -42,7 +44,7 @@ function get_action_description(action) {
 function action_collect_mana() {
     var segment = obj_segments_manager.segments[obj_segments_manager.current_segment]
     
-    segment.ground = GROUND.CORRUPTED
+    // segment.ground = GROUND.CORRUPTED
     obj_move_controller.pause_move_timer()
     
     instance_create_layer(obj_player.bbox_right + 36, obj_player.bbox_bottom + 24, "Effects", obj_mana_collect_fx)
@@ -54,7 +56,7 @@ function action_collect_mana() {
     obj_time_manager.schedule_alarm(1.2, function() {
         var ground_instance = instance_nearest(obj_player.bbox_right, obj_player.bbox_bottom, obj_ground)
         if (ground_instance != undefined) {
-            ground_instance.corrupt()
+            // ground_instance.corrupt()
             
             for(var i = 0; i < array_length(ground_instance.resources_inst); i++) {
                 var r = ground_instance.resources_inst[i]
@@ -130,56 +132,41 @@ function action_fight() {
         obj_time_manager.schedule_alarm(0.9, function() {
             var enemy_instance = instance_nearest(obj_player.bbox_right + 90, obj_player.bbox_bottom, obj_enemy)
             if (enemy_instance != undefined) {
-                var fx = instance_create_layer(enemy_instance.x, enemy_instance.y, "Instances1", obj_fight_fx_1)    
+                var fxs = [
+                    obj_fight_fx_1,
+                    obj_fight_fx_2,
+                    obj_fight_fx_3,
+                    obj_fight_fx_4, 
+                ]
+                var fi = floor(random(array_length(fxs)))
+                var fx = instance_create_layer(enemy_instance.x, enemy_instance.y, "Instances1", fxs[fi])    
                 fx.enemy = enemy_instance
+                fx.on_hit = _action_hit_enemy
             }
         })
-        
-        obj_time_manager.schedule_alarm(1.4, function() {
-            var enemy_instance = instance_nearest(obj_player.bbox_right + 90, obj_player.bbox_bottom, obj_enemy)
-            if (enemy_instance != undefined) {
-                var enemy_type = enemy_instance.type
-                var ex = enemy_instance.x
-                var ey = enemy_instance.bbox_top
-                var is_dead = enemy_instance.damage(1)
-                if (is_dead) {
-                    var desc = get_enemy_description(enemy_type)
-                    var _x = 0
-                    for (var i = 0; i < array_length(desc.rewards); i++) {
-                        var r = desc.rewards[i]
-                        add_resource_to_player(ex + _x, ey - 10, r, i * 16)
-                        _x += 18
-                    }
-                    
-                    obj_time_manager.schedule_alarm(2.3, function() {
-                        obj_move_controller.enable_idle_timer()
-                        obj_move_controller.skip_idle()
-                    })
-                    
-                    obj_actions_controller.clear_actions()            
-                } else {
-                    obj_time_manager.schedule_alarm(1.6, function() {
-                        var enemy_instance = instance_nearest(obj_player.bbox_right + 90, obj_player.bbox_bottom, obj_enemy)
-                        if (enemy_instance != undefined) {
-                            enemy_instance.attack_anim()
-                        }
-                    })
-                    
-                    obj_time_manager.schedule_alarm(2.8, function() {
-                        obj_actions_controller.set_fight_actions()
-                    })
-                    
-                }
-            }
-        })
-        
     } else {
         _action_show_insufficient_resources(reqs)
     }
 }
 
 function action_repel() {
-    show_insufficient_resource_in_ui(RESOURCE.WIND)
+    var reqs = get_action_description(ACTION.REPEL).requirements
+    
+    if (_action_has_resources(reqs)) {
+        obj_actions_controller.clear_actions()
+        _action_take_resources(reqs)
+        obj_move_controller.pause_move_timer()
+        
+        obj_time_manager.schedule_alarm(0.9, function() {
+            var tornado = instance_create_layer(obj_player.x, obj_player.bbox_bottom, "Effects", obj_tornado)    
+        })
+        obj_time_manager.schedule_alarm(1.8, function() {
+            obj_move_controller.enable_idle_timer()
+            obj_move_controller.skip_idle()
+        })
+    } else {
+        _action_show_insufficient_resources(reqs)
+    }
 }
 
 function action_take_hit() {
@@ -223,7 +210,6 @@ function action_heal() {
                     add_resource_to_player(ex + _x, ey, res.resource, (i + j) * 16)
                     _x += 18
                 }
-                
             }    
         }
     })
@@ -238,6 +224,50 @@ function action_skip() {
     obj_move_controller.skip_idle()
     
     obj_actions_controller.clear_actions()
+}
+function action_ok() {
+    obj_move_controller.enable_idle_timer()
+    obj_move_controller.skip_idle()
+    
+    obj_actions_controller.clear_actions()
+}
+
+
+function _action_hit_enemy() {
+    var enemy_instance = instance_nearest(obj_player.bbox_right + 90, obj_player.bbox_bottom, obj_enemy)
+    if (enemy_instance != undefined) {
+        var enemy_type = enemy_instance.type
+        var ex = enemy_instance.x
+        var ey = enemy_instance.bbox_top
+        var is_dead = enemy_instance.damage(1)
+        if (is_dead) {
+            var desc = get_enemy_description(enemy_type)
+            var _x = 0
+            for (var i = 0; i < array_length(desc.rewards); i++) {
+                var r = desc.rewards[i]
+                add_resource_to_player(ex + _x, ey - 10, r, i * 16)
+                _x += 18
+            }
+            
+            obj_time_manager.schedule_alarm(2.3, function() {
+                obj_move_controller.enable_idle_timer()
+                obj_move_controller.skip_idle()
+            })
+            
+            obj_actions_controller.clear_actions()            
+        } else {
+            obj_time_manager.schedule_alarm(1.6, function() {
+                var enemy_instance = instance_nearest(obj_player.bbox_right + 90, obj_player.bbox_bottom, obj_enemy)
+                if (enemy_instance != undefined) {
+                    enemy_instance.attack_anim()
+                }
+            })
+            
+            obj_time_manager.schedule_alarm(2.8, function() {
+                obj_actions_controller.set_fight_actions()
+            })
+        }
+    }
 }
 
 function _action_has_resources(resources) {

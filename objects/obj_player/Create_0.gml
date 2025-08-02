@@ -1,12 +1,22 @@
 max_hp = 5
 hp = max_hp - 2
 
+blend_white = false
 
 damage = function() {
     hp -= 1
     if (hp == 0) {
         destroy()
+        return
     }
+    blink()
+}
+
+blink = function() {
+    blend_white = true
+    obj_time_manager.schedule_alarm(0.1, function() {
+        blend_white = false
+    })
 }
 
 destroy = function() {
