@@ -13,6 +13,12 @@ function get_building_description(building) {
         requirements: [new Req(RESOURCE.EARTH, 1), new Req(RESOURCE.WATER, 1)],
         enemies: []
     }
+    buildings[BUILDING.FARM] = {
+        object: obj_building_farm,
+        resources: [RESOURCE.FIRE, RESOURCE.WATER],
+        requirements: [new Req(RESOURCE.EARTH, 1), new Req(RESOURCE.WIND, 1)],
+        enemies: []
+    }
     buildings[BUILDING.CHURCH] = {
         object: obj_building_church,
         resources: [RESOURCE.WIND, RESOURCE.EARTH, RESOURCE.FIRE, RESOURCE.WATER],
@@ -22,12 +28,6 @@ function get_building_description(building) {
     buildings[BUILDING.PORTAL] = {
         object: obj_building_portal,
         resources: [],
-        requirements: [],
-        enemies: []
-    }
-    buildings[BUILDING.FARM] = {
-        object: obj_building_farm,
-        resources: [RESOURCE.FIRE, RESOURCE.WATER],
         requirements: [],
         enemies: []
     }

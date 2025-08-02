@@ -1,5 +1,6 @@
 actions = []
 can_skip = false
+text = ""
 
 populate_actions = function(segment) {
     actions = []
@@ -10,6 +11,9 @@ populate_actions = function(segment) {
         if (segment.building == undefined and segment.enemy == undefined) {
             array_push(actions, get_action_description(ACTION.COLLECT_MANA))
             array_push(actions, get_action_description(ACTION.BUILD_MILL))
+            array_push(actions, get_action_description(ACTION.BUILD_FARM))
+            
+            text = text_on_empty_segment()
         }
     }
     
@@ -18,17 +22,23 @@ populate_actions = function(segment) {
             array_push(actions, get_action_description(ACTION.TELEPORT))    
         } else {
             array_push(actions, get_action_description(ACTION.BUILD_PORTAL))    
+            
+            text = text_on_portal()
         }
     }
     
     if (segment.building == BUILDING.CHURCH) {
         array_push(actions, get_action_description(ACTION.HEAL))    
+        
+        text = text_on_church()
     }
     
     if (segment.enemy != undefined) {
         array_push(actions, get_action_description(ACTION.FIGHT))
         array_push(actions, get_action_description(ACTION.REPEL))
         array_push(actions, get_action_description(ACTION.ENDURE))
+        
+        text = text_on_enemy()
         
         can_skip = false
     }
@@ -38,6 +48,7 @@ populate_actions = function(segment) {
 
 clear_actions = function () {
     actions = []
+    text = ""
     can_skip = false
     obj_ui_sidebar_controller.refresh_actions_buttons()
 }
@@ -47,6 +58,9 @@ set_fight_actions = function() {
     array_push(actions, get_action_description(ACTION.FIGHT))
     // array_push(actions, get_action_description(ACTION.REPEL))
     array_push(actions, get_action_description(ACTION.ENDURE))
+    
+    text = text_in_fight()
+    
     can_skip = false
     obj_ui_sidebar_controller.refresh_actions_buttons()
 }

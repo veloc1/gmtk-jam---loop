@@ -28,6 +28,10 @@ if (obj_actions_controller.can_skip) {
 }
 
 
+_y += 28
+draw_text(start_x, _y, obj_actions_controller.text)
+
+
 #region buttons
 for (var i = 0; i < array_length(action_buttons);i++) {
     action_buttons[i].draw()

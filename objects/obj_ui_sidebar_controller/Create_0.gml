@@ -86,10 +86,14 @@ insufficient_resource = function(resource) {
 refresh_actions_buttons = function() {
     action_buttons = []
     
+    var _info_height = 48
+    var text_height = 10 * 4
+    var _y = start_y + _info_height + text_height + 4
+    
     for (var i = 0; i < array_length(obj_actions_controller.actions); i++) {
         var action = obj_actions_controller.actions[i]
         
-        var button = new UIActionButton(start_x, start_y + 48 + i * 38, action.title)
+        var button = new UIActionButton(start_x, _y + i * 38, action.title)
         button.width = 172
         
         button.shortcut = INPUT_VERB.ACTION1 + i

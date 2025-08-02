@@ -2,6 +2,7 @@ enum ACTION {
     COLLECT_MANA,
     BUILD_PORTAL,
     BUILD_MILL,
+    BUILD_FARM,
     TELEPORT,
     FIGHT,
     REPEL,
@@ -27,6 +28,7 @@ function get_action_description(action) {
     actions[ACTION.COLLECT_MANA] = new Action("Collect mana", action_collect_mana, [], [])
     actions[ACTION.BUILD_PORTAL] = new Action("! Build portal", action_build_portal, get_portal_requirements(), [])
     actions[ACTION.BUILD_MILL] = new Action("Build mill", action_build_mill, get_building_description(BUILDING.MILL).requirements, [new Req(RESOURCE.BUILDING, 1), new Req(RESOURCE.FIRE, 1)])
+    actions[ACTION.BUILD_FARM] = new Action("Build farm", action_build_farm, get_building_description(BUILDING.FARM).requirements, [new Req(RESOURCE.BUILDING, 1), new Req(RESOURCE.FIRE, 1)])
     actions[ACTION.TELEPORT] = new Action("Teleport", action_teleport, [new Req(RESOURCE.FIRE, 1)], [])
     actions[ACTION.FIGHT] = new Action("Fight", action_fight, [new Req(RESOURCE.FIRE, 1)], [])
     actions[ACTION.REPEL] = new Action("Repel", action_repel, [new Req(RESOURCE.WIND, 1)], [])
@@ -109,6 +111,9 @@ function action_build_portal() {
 
 function action_build_mill() {
     action_build(BUILDING.MILL, get_building_description(BUILDING.MILL).requirements)
+}
+function action_build_farm() {
+    action_build(BUILDING.FARM, get_building_description(BUILDING.FARM).requirements)
 }
 
 function action_teleport() {
