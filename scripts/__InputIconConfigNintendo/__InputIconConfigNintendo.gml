@@ -6,10 +6,10 @@
 //            //
 ////////////////
 
-InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_SWITCH, gp_face1, "B"); //B
-InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_SWITCH, gp_face2, "A"); //A
-InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_SWITCH, gp_face3, "Y"); //Y
-InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_SWITCH, gp_face4, "X"); //X
+InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_SWITCH, gp_face1, spr_gp_nin_b); //B
+InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_SWITCH, gp_face2, spr_gp_nin_a); //A
+InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_SWITCH, gp_face3, spr_gp_nin_y); //Y
+InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_SWITCH, gp_face4, spr_gp_nin_x); //X
 
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_SWITCH, gp_shoulderl,  "L" ); //L
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_SWITCH, gp_shoulderr,  "R" ); //R

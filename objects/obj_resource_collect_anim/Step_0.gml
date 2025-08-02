@@ -3,6 +3,12 @@ if (!is_inited) {
     sprite_index = get_resource_sprite(resource)
 }
 
+if (delay > 0) {
+    delay -= 1
+    start_time = obj_time_manager.game_time
+    return
+}
+
 var t = (obj_time_manager.game_time - start_time)  / duration
 
 var scale_after = 0.7
@@ -14,9 +20,11 @@ if (t > scale_after) {
 
 if (t >= 1) {
     instance_destroy(self)
-    obj_player.resources[resource] += 1
+    obj_run_state.resources[resource] += 1
+    
+    increment_resource_in_ui(resource)
 }
 
-var p = get_bezier_point(x1, y1, x2, y2, x3, y3, obj_player.x + obj_player.sprite_width / 2 + sprite_width, obj_player.y, t)
+var p = get_bezier_point(x1, y1, x2, y2, x3, y3, obj_player.x + obj_player.sprite_width / 2 + sprite_width, obj_player.y + 8, t)
 x = p.x
 y = p.y

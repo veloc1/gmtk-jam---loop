@@ -23,7 +23,7 @@
   ],
   "name":"spr_water",
   "nineSlice":null,
-  "origin":0,
+  "origin":4,
   "parent":{
     "name":"Resources",
     "path":"folders/Sprites/UI/Resources.yy",
@@ -77,8 +77,8 @@
     ],
     "visibleRange":null,
     "volume":1.0,
-    "xorigin":0,
-    "yorigin":0,
+    "xorigin":8,
+    "yorigin":8,
   },
   "swatchColours":[
     4278190335,4289630092,4284695896,4281803070,4282934170,4286421975,4282501056,4281630052,4282029284,4282069149,

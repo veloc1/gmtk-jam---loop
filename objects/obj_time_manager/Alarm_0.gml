@@ -2,8 +2,3 @@
 
 game_speed = normal_game_speed
 
-
-
-
-
-

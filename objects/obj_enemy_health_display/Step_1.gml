@@ -1,0 +1,1 @@
+x = enemy.x - width / 2

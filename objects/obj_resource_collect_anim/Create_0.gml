@@ -11,3 +11,4 @@ y3 = y + y_diff * 1.9
 
 start_time = obj_time_manager.game_time
 duration = 0.9
+delay = 0

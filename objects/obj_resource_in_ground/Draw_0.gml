@@ -1,5 +1,5 @@
 draw_sprite(spr_resource_outline, 0, x, y)
-draw_sprite(get_resource_sprite(resource), 0, x, y)
+draw_sprite(get_resource_sprite(resource), 0, x + 2 + 8, y + 2 + 8)
 
 // draw_set_color(c_fuchsia)
 // var y_diff = obj_player.y - y

@@ -9,8 +9,8 @@
   "name":"obj_resource_collect_anim",
   "overriddenProperties":[],
   "parent":{
-    "name":"Environment",
-    "path":"folders/Objects/Environment.yy",
+    "name":"Effects",
+    "path":"folders/Objects/Effects.yy",
   },
   "parentObjectId":null,
   "persistent":false,

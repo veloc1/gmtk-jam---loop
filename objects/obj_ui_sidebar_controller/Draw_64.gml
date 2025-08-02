@@ -26,22 +26,41 @@ draw_sprite_stretched(spr_turn_rect_outline, 0, start_x, _y, width, 8)
 for (var i = 0; i < array_length(obj_actions_controller.actions); i++) {
     var action = obj_actions_controller.actions[i]
     _y += 18
-    ui_draw_button(start_x, _y, action.title)
+    ui_draw_action_button(start_x, _y, action.title)
 }
 #endregion
 
 
 #region resources
-_y = display_get_gui_height() - 24
+/*var resource_list = [
+    RESOURCE.SOUL,
+    RESOURCE.WOOD,
+]
+_y = display_get_gui_height() - 52
 var _x = start_x
 
-ui_draw_resource_counter(_x,_y, RESOURCE.EARTH, string("{0}", obj_player.resources[RESOURCE.EARTH]))
-_x += 34
-ui_draw_resource_counter(_x,_y, RESOURCE.FIRE, string("{0}", obj_player.resources[RESOURCE.FIRE]))
-_x += 34
-ui_draw_resource_counter(_x,_y, RESOURCE.WIND, string("{0}", obj_player.resources[RESOURCE.WIND]))
-_x += 34
-ui_draw_resource_counter(_x,_y, RESOURCE.WATER, string("{0}", obj_player.resources[RESOURCE.WATER]))
+for (var i = 0; i < array_length(resource_list); i++) {
+    var r = resource_list[i]
+    ui_draw_resource_counter(_x,_y, r, string("{0}", obj_run_state.resources[r]))
+    _x += 40
+}
+*/
+var resource_list = [
+    RESOURCE.EARTH,
+    RESOURCE.FIRE,
+    RESOURCE.WIND,
+    RESOURCE.WATER,
+    RESOURCE.SOUL,
+]
+_y = display_get_gui_height() - 28
+var _x = start_x
+
+for (var i = 0; i < array_length(resource_list); i++) {
+    var r = resource_list[i]
+    ui_draw_resource_counter(_x,_y, r, string("{0}", obj_run_state.resources[r]))
+    _x += 35.5
+}
+
 
 #endregion
 

@@ -6,9 +6,17 @@
 //            //
 ////////////////
 
+// InputIconDefineKeyboard(vk_space,     spr_key_space);
+// InputIconDefineKeyboard("Z", "Z");
+InputIconDefineKeyboard("Z", spr_key_z);
+InputIconDefineKeyboard("X", spr_key_x);
+InputIconDefineKeyboard("C", spr_key_c);
+InputIconDefineKeyboard("V", spr_key_v);
+
+
 InputIconDefineKeyboard("A", "A");
 InputIconDefineKeyboard("B", "B");
-InputIconDefineKeyboard("C", "C");
+// InputIconDefineKeyboard("C", "C");
 InputIconDefineKeyboard("D", "D");
 InputIconDefineKeyboard("E", "E");
 InputIconDefineKeyboard("F", "F");
@@ -27,11 +35,11 @@ InputIconDefineKeyboard("R", "R");
 InputIconDefineKeyboard("S", "S");
 InputIconDefineKeyboard("T", "T");
 InputIconDefineKeyboard("U", "U");
-InputIconDefineKeyboard("V", "V");
+// InputIconDefineKeyboard("V", "V");
 InputIconDefineKeyboard("W", "W");
-InputIconDefineKeyboard("X", "X");
+// InputIconDefineKeyboard("X", "X");
 InputIconDefineKeyboard("Y", "Y");
-InputIconDefineKeyboard("Z", "Z");
+// InputIconDefineKeyboard("Z", "Z");
 
 InputIconDefineKeyboard("0", "0");
 InputIconDefineKeyboard("1", "1");
@@ -69,7 +77,8 @@ InputIconDefineKeyboard(vk_pause,       "pause break");
 
 InputIconDefineKeyboard(vk_escape,    "escape");
 InputIconDefineKeyboard(vk_backspace, "backspace");
-InputIconDefineKeyboard(vk_space,     "space");
+// InputIconDefineKeyboard(vk_space,     "space");
+InputIconDefineKeyboard(vk_space,     spr_key_space);
 InputIconDefineKeyboard(vk_enter,     "enter");
 
 InputIconDefineKeyboard(vk_up,    "arrow up");

@@ -6,10 +6,10 @@
 //                 //
 /////////////////////
 
-InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_face1, "cross"   ); //Cross
-InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_face2, "circle"  ); //Circle
-InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_face3, "square"  ); //Square
-InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_face4, "triangle"); //Triangle
+InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_face1, spr_gp_ps_x   ); //Cross
+InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_face2, spr_gp_ps_o  ); //Circle
+InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_face3, spr_gp_ps_s  ); //Square
+InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_face4, spr_gp_ps_t ); //Triangle
 
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_shoulderl,  "L1"); //L1
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_shoulderr,  "R1"); //R1
@@ -53,10 +53,10 @@ InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS5, gp_paddlel, "LB");
 //                 //
 /////////////////////
 
-InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_face1, "cross"   ); //Cross
-InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_face2, "circle"  ); //Circle
-InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_face3, "square"  ); //Square
-InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_face4, "triangle"); //Triangle
+InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_face1, spr_gp_ps_x   ); //Cross
+InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_face2, spr_gp_ps_o ); //Circle
+InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_face3, spr_gp_ps_s  ); //Square
+InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_face4, spr_gp_ps_t ); //Triangle
 
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_shoulderl,  "L1"); //L1
 InputIconDefineGamepad(INPUT_GAMEPAD_TYPE_PS4, gp_shoulderr,  "R1"); //R1
