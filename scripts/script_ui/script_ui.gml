@@ -49,6 +49,8 @@ function UIActionButton(_x, _y, text) constructor {
     self.shortcut = undefined
     self.action = undefined
     
+    self.has_second_line = false
+    
     game_to_gui_ratio = 1.5
     
     step = function() {
@@ -60,6 +62,14 @@ function UIActionButton(_x, _y, text) constructor {
         if (device_mouse_check_button_pressed(0, mb_left)) {
             if (point_in_rectangle(device_mouse_x_to_gui(0), device_mouse_y_to_gui(0), x, y, x + width, y + height)) {
                 action.func()
+            }
+        }
+        if (action != undefined) {
+            has_second_line = false
+            height = 18
+            if (array_length(action.requirements) > 0 or array_length(action.outcome) > 0) {
+                has_second_line = true
+                height = 36
             }
         }
     }

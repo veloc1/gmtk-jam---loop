@@ -6,14 +6,26 @@ populate_actions = function(segment) {
     actions = []
     
     can_skip = true
+    can_add_actions = true
     
     // if (segment.ground == GROUND.NORMAL) {
         if (segment.building == undefined and segment.enemy == undefined and segment.event == undefined) {
-            array_push(actions, get_action_description(ACTION.COLLECT_MANA))
-            array_push(actions, get_action_description(ACTION.BUILD_MILL))
-            array_push(actions, get_action_description(ACTION.BUILD_FARM))
+            if (can_add_actions) {
+                array_push(actions, get_action_description(ACTION.COLLECT_MANA))
+                if (segment.necropol_exclusive) {
+                    array_push(actions, get_action_description(ACTION.BUILD_NECROPOL)) 
+                } else {
+                    array_push(actions, get_action_description(ACTION.BUILD_MILL))
+                    array_push(actions, get_action_description(ACTION.BUILD_QUARRY))
+                    array_push(actions, get_action_description(ACTION.BUILD_VILLAGE)) 
+                }
+            }
             
-            text = text_on_empty_segment()
+            if (segment.necropol_exclusive) {
+                text = text_on_empty_necropol_segment()
+            } else {
+                text = text_on_empty_segment()
+            }
         }
     // }
     
@@ -27,34 +39,48 @@ populate_actions = function(segment) {
         text = event.text
         
         can_skip = event.can_skip
+        can_add_actions = !event.is_exclusive
         
         has_event = true
-    }
-    
-    if (segment.building == BUILDING.PORTAL) {
-        if (obj_run_state.portal_status == "complete") {
-            array_push(actions, get_action_description(ACTION.TELEPORT))    
-        } else {
-            array_push(actions, get_action_description(ACTION.BUILD_PORTAL))    
+    } else if (segment.building != undefined) {
+        if (segment.building == BUILDING.PORTAL) {
+            if (obj_run_state.portal_status != "complete") {
+                if (can_add_actions) {
+                    array_push(actions, get_action_description(ACTION.BUILD_PORTAL))    
+                }
+            } 
+            
+            if (can_add_actions) {
+                array_push(actions, get_action_description(ACTION.TELEPORT))    
+            }
             
             if (!has_event) {
                 text = text_on_portal()
+                can_skip = false
+            }
+            
+        } else  if (segment.building == BUILDING.CHURCH) {
+            if (can_add_actions) {
+                array_push(actions, get_action_description(ACTION.HEAL))    
+            }
+            
+            if (!has_event) {
+                text = text_on_church()
+            }
+        } else {
+            if (!has_event) {
+                var b = get_building_description(segment.building)
+                var available_lifetime = b.lifetime - segment.building_lifetime
+                
+                text = text_on_building(string_upper(b.name), available_lifetime)
             }
         }
-    }
-    
-    if (segment.building == BUILDING.CHURCH) {
-        array_push(actions, get_action_description(ACTION.HEAL))    
-        
-        if (!has_event) {
-            text = text_on_church()
+    } else if (segment.enemy != undefined) {
+        if (can_add_actions) {
+            array_push(actions, get_action_description(ACTION.FIGHT))
+            array_push(actions, get_action_description(ACTION.REPEL))
+            array_push(actions, get_action_description(ACTION.ENDURE))
         }
-    }
-    
-    if (segment.enemy != undefined) {
-        array_push(actions, get_action_description(ACTION.FIGHT))
-        array_push(actions, get_action_description(ACTION.REPEL))
-        array_push(actions, get_action_description(ACTION.ENDURE))
         
         if (!has_event) {
             text = text_on_enemy()
@@ -76,7 +102,7 @@ clear_actions = function () {
 set_fight_actions = function() {
     actions = []
     array_push(actions, get_action_description(ACTION.FIGHT))
-    // array_push(actions, get_action_description(ACTION.REPEL))
+    array_push(actions, get_action_description(ACTION.REPEL))
     array_push(actions, get_action_description(ACTION.ENDURE))
     
     text = text_in_fight()

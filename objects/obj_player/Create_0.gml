@@ -1,5 +1,5 @@
-max_hp = 5
-hp = max_hp - 2
+max_hp = 7
+hp = max_hp
 
 blend_white = false
 
@@ -10,6 +10,8 @@ damage = function() {
         return
     }
     blink()
+    
+    play_sound(snd_hurt)
 }
 
 blink = function() {

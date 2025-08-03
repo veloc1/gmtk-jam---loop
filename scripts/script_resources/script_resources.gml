@@ -7,6 +7,7 @@ enum RESOURCE {
     SOUL,
     HP,
     BUILDING,
+    RANDOM_ENERGY,
 }
 
 function UIIncrementedResource(resource) constructor  {
@@ -36,6 +37,7 @@ function get_resource_sprite(resource) {
         spr_souls,
         spr_heart_resource,
         spr_building_resource,
+        spr_random_energy,
     ][resource]
 }
 

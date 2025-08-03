@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":2,
   "conversionMode":0,
-  "duration":89.30234,
+  "duration":111.627914,
   "name":"bgm_main",
   "parent":{
     "name":"Sounds",
@@ -21,5 +21,5 @@
   "sampleRate":44100,
   "soundFile":"bgm_main.ogg",
   "type":1,
-  "volume":0.6,
+  "volume":0.3,
 }

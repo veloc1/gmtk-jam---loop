@@ -93,14 +93,21 @@ refresh_actions_buttons = function() {
     for (var i = 0; i < array_length(obj_actions_controller.actions); i++) {
         var action = obj_actions_controller.actions[i]
         
-        var button = new UIActionButton(start_x, _y + i * 38, action.title)
+        var button = new UIActionButton(start_x, _y, action.title)
         button.width = 172
         
         button.shortcut = INPUT_VERB.ACTION1 + i
         
         button.action = action
+        button.step()
         
         array_push(action_buttons, button)
+        
+        if (button.has_second_line) {
+            _y += 38
+        } else {
+            _y += 20
+        }
     }
     
 }

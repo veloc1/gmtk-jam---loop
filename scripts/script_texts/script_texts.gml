@@ -9,10 +9,16 @@ function text_on_empty_segment() {
     ])
 }
 
+function text_on_empty_necropol_segment() {
+    return _text_random([
+        "The dark energy lingers around. \n Looks like there is a lot of souls \nto collect.",
+    ])
+}
+
 
 function text_on_portal() {
     return _text_random([
-        "You are arrived at your goal. Will your \njourney ends here?",
+        "You are arrived at your goal. Will your \njourney end here?",
     ])
 }
 
@@ -27,6 +33,10 @@ function text_on_church() {
         "You can rest here. Everything can wait.",
         "Astrologers proclaim month of the \nHourglass. Looks like the history will \nrepeat itself.",
     ])
+}
+
+function text_on_building(building, lifetime) {
+    return string("You are at {0}. \nThis building will collapse in {1} \nseasons.", building, lifetime)
 }
 
 
@@ -45,5 +55,17 @@ function text_in_fight() {
 }
 
 function text_event_tutorial_church() {
-    return "Welcome, mage. Ancient whispers have \ndrawn you to this forgotten church. \nRebuild the portal within—it is your \nonly path home"
+    return "Welcome, mage. Ancient whispers have \ndrawn you to this forgotten church. \nRebuild the portal up ahead is your \nonly path home."
+}
+
+function text_event_tutorial_mana_gather() {
+    return "You can collect energy from ground. \nTry doing this right now."
+}
+
+function text_event_tutorial_build() {
+    return "With collected energy - you can \ncreate. Try creating building here. \nEvery building will provide different \nresources."
+}
+
+function text_event_tutorial_fight() {
+    return "Oh no! There is an enemy. Looks \nlike you should fight them. Enemies will \nbe spawned on destroyed \nbuildings."
 }

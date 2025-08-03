@@ -25,10 +25,12 @@ if (t >= 1) {
         if (obj_player.hp > obj_player.max_hp) {
             obj_player.hp = obj_player.max_hp
         }
+        play_sound_random_pitch(snd_heal)
     } else {
         obj_run_state.resources[resource] += 1
         
         increment_resource_in_ui(resource)
+        play_sound_random_pitch(snd_get_resources)
     }
 }
 

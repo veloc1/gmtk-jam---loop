@@ -12,6 +12,7 @@ idle_wait_time = 10
 is_timer_disabled = false
 
 timer_next_move = undefined
+timer_steps = undefined
 
 create_next_segment = function() {
     obj_segments_manager.create_segment_objects(segment_size)
@@ -68,6 +69,24 @@ skip_idle = function() {
     change_behaviour("move-to-next")
 }
 
+start_steps_sound = function() {
+    timer_steps = obj_time_manager.schedule_alarm(0.5, function() {
+        play_sound_random_pitch(snd_step)
+    }, -1)
+}
+
+stop_steps_sound = function() {
+    obj_time_manager.discard_alarm(timer_steps)
+}
+
+move_immediate = function(cb) {
+    create_next_segment()
+    obj_segments_manager.started_moving_to_next_segment()
+    move_layers(segment_size)
+    obj_segments_manager.moved_to_next_segment()
+    cb()
+}
+
 add_behaviour(new Behaviour("idle", {
     on_start: function() { 
         obj_time_manager.discard_alarm(timer_next_move)
@@ -92,6 +111,7 @@ add_behaviour(new Behaviour("move-to-next", {
         
         create_next_segment()
         obj_segments_manager.started_moving_to_next_segment()
+        start_steps_sound()
     },
     on_step: function() {
         var t = obj_time_manager.game_time - t_start
@@ -114,6 +134,7 @@ add_behaviour(new Behaviour("move-to-next", {
     },
     on_end: function() {
         obj_segments_manager.moved_to_next_segment()
+        stop_steps_sound()
     },
 }))
 

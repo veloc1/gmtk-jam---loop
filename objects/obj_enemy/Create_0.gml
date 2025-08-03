@@ -2,14 +2,16 @@ event_inherited()
 
 attack = 0
 hp = 0
-souls = 0
 
 type = undefined
+idle_type = "none"
 
 hp_display = undefined
 
 start_x = x
+start_y = y
 x_offset = 0
+y_offset = 0
 
 blend_white = false
 repel_coords = []
@@ -17,7 +19,20 @@ repel_start_time = 0
 repel_time = 0
 
 add_behaviour(new Behaviour("idle", {
-    
+    on_start: function() {
+        start_x = x
+        start_y = y
+    },
+    on_step: function() {
+        if (idle_type == "sin") {
+            y_offset = sin(obj_time_manager.game_time * 2) * 3
+            y = start_y + y_offset
+        }
+    },
+    on_end: function () {
+        // x = start_x // start_x is off screen, as player aproaches enemy
+        y = start_y
+    }
 }))
 add_behaviour(new Behaviour("prepare_attack", {
     on_start: function() {
@@ -33,7 +48,6 @@ add_behaviour(new Behaviour("prepare_attack", {
 }))
 add_behaviour(new Behaviour("lunge", {
     on_start: function() {
-        
     },
     on_step: function() {
         x_offset -= 0.5
@@ -98,7 +112,6 @@ init = function(_type) {
     var desc = get_enemy_description(type)
     attack = desc.damage
     hp = desc.hp
-    souls = desc.souls
     
     hp_display = instance_create_layer(x, bbox_top - 12, "Instances1", obj_enemy_health_display)
     hp_display.enemy = self

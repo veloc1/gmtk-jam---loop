@@ -1,0 +1,1 @@
+obj_move_controller.idle_wait_time = 10000
