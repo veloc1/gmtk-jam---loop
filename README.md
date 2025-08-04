@@ -1,6 +1,6 @@
 # The Waystone Circle
 
-An entry to [GMTK 2025 Jam](https://itch.io/jam/gmtk-2025)
+An [entry](https://itch.io/jam/gmtk-2025/rate/3772695) to [GMTK 2025 Jam](https://itch.io/jam/gmtk-2025).
 
 ![main.gif](main.gif)
 
