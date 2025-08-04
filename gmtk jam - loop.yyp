@@ -131,6 +131,7 @@
     {"id":{"name":"obj_fight_fx_4","path":"objects/obj_fight_fx_4/obj_fight_fx_4.yy",},},
     {"id":{"name":"obj_fight_fx","path":"objects/obj_fight_fx/obj_fight_fx.yy",},},
     {"id":{"name":"obj_ghost","path":"objects/obj_ghost/obj_ghost.yy",},},
+    {"id":{"name":"obj_gif_recorder","path":"objects/obj_gif_recorder/obj_gif_recorder.yy",},},
     {"id":{"name":"obj_golem","path":"objects/obj_golem/obj_golem.yy",},},
     {"id":{"name":"obj_ground_corrupted","path":"objects/obj_ground_corrupted/obj_ground_corrupted.yy",},},
     {"id":{"name":"obj_ground_crack","path":"objects/obj_ground_crack/obj_ground_crack.yy",},},
