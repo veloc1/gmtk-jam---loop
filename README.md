@@ -4,6 +4,8 @@ An [entry](https://itch.io/jam/gmtk-2025/rate/3772695) to [GMTK 2025 Jam](https:
 
 ![main.gif](main.gif)
 
+[Devlog](https://uselessdinosaur.neocities.org/the-waystone-circle-gmtk-2025-jam-devlog)
+
 Summoned to an ancient church, you must find your way home through the only means available—rebuilding the portal. Travel the kingdom automatically, making strategic choices: fight monsters for souls, build structures for resources, and gather the power needed to open your path home.
 
 # Controls
@@ -20,8 +22,6 @@ gamepad
 
 
 # Team
-
-
 
 * ChipTune	 Idea, Game design, Balance	https://www.linkedin.com/in/stanislav-sletin/
 * AlexSilent 	Art	http://deviantart.com/brosnarium
